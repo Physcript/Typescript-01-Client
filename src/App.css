@@ -9,4 +9,8 @@
 }
 
 html {height:100%;}
-body {height:100%; margin:0; font-family:'Poppins';box-sizing: border-box; }
+body {height:100%; margin:0; font-family:'Poppins';box-sizing: border-box; background-color: #FFFAFA; }
+ul , li {
+    list-style: none;
+
+}

@@ -1,5 +1,7 @@
-import React , { useContext } from 'react'
+import React , { useContext, useEffect } from 'react'
+import authContext from '../context/auth/auth'
 import { Container,Row,Col,Card } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/auth/auth'
 import hero from '../images/hero.jpg'
 import test from '../images/test.jpg'
@@ -10,6 +12,15 @@ import test4 from '../images/test4.jpg'
 
 export interface IStartPageProps {}
 const StartPage:React.FunctionComponent<IStartPageProps> = (props) => {
+
+	const AuthContext = useContext(authContext)
+	const Navi = useNavigate()
+
+	if(AuthContext.authState.AUTH) {
+		Navi('/home')
+	}
+	
+
 	return (
 		<div>
 			<div className = 'd-flex align-items-center m-3' style = {{ minHeight: '90vh' }}>

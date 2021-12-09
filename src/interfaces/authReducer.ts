@@ -10,5 +10,9 @@ interface IReducerLogin {
 interface IReducerLogout {
 	type: 'LOGOUT'
 }
+interface IReducerToken {
+	type: 'TOKEN',
+	token: string
+}
 
-export type TReducer = IReducerLogin | IReducerLogout
+export type TReducer = IReducerLogin | IReducerLogout | IReducerToken

@@ -1,9 +1,10 @@
-import React, { useContext,useReducer } from 'react';
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import React, { useContext,useReducer,useEffect } from 'react';
+import { BrowserRouter,Routes,Route,useNavigate } from 'react-router-dom'
 import { AuthContextProvider } from './context/auth/auth'
 import routes from './routes/index'
 import reducer from './context/auth/reducer'
 import { InitialAuthState } from './interfaces/authContext'
+import axios from 'axios'
 
 import StartPage from './pages/StartPage'
 import Headers from './components/Headers'
@@ -18,6 +19,22 @@ function App() {
     authDispatch
   }
 
+
+  useEffect(() => {
+      const token = document.cookie.split('=')[1] || null
+      if(token) {
+        axios.get('http://localhost:1337/api/auth',
+          {withCredentials: true})
+        .then((res) => {
+          const user = res.data.data.user
+          authDispatch({type: 'LOGIN', payload: user, token: token })
+        })
+        .catch((err) => {
+          document.cookie = 'token='
+          authDispatch({type: 'LOGOUT'})
+        })
+      }
+  },[])
 
 
   return (

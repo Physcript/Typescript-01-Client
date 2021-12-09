@@ -11,6 +11,12 @@ const reducer = (state: IAuthContext,action: TReducer): IAuthContext => {
 				TOKEN: action.token,
 				AUTH: true
 			}
+		case 'TOKEN': {
+			return {
+				...state,
+				TOKEN: action.token
+			}
+		}
 		case 'LOGOUT':
 			return {
 				...state
